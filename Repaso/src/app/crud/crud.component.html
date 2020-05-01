@@ -1,0 +1,59 @@
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+    <table class="table table-hover table-dark">
+      <thead>
+        <th>Codigo</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Borrar</th>
+        <th>Modificar</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let articulo of articulos">
+          <td>{{articulo.codigo}}</td>
+          <td>{{articulo.descripcion}}</td>
+          <td>{{articulo.precio}}</td>
+          <td><button class="btn btn-light">Borrar</button></td>
+          <td><button class="btn btn-light">Modificar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<br>
+<hr>
+
+<div class="container opciones">
+    <form [formGroup]="formulario" (ngSubmit)="agregarq()" >
+          <div class="botones">
+            Codigo:&nbsp;&nbsp;&nbsp; <input type="number" formControlName="codigo"/>
+             <button type="submit">Agregar</button>
+          </div>
+          <br>
+          <br>
+          Precio:&nbsp;&nbsp;&nbsp;&nbsp; <input type="number" formControlName="precio"/>
+          <br>
+          <br>
+          Descripcion:&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="form-group">
+            <textarea id="my-textarea" class="form-control" name="" formControlName="descripcion" rows="3"></textarea>
+          </div>
+          <div *ngIf="this.formulario.get('descripcion').errors && this.formulario.get('descripcion').dirty">
+            <div *ngIf="this.formulario.get('descripcion').hasError('required')" class="alert alert-danger" role="alert">
+              Este campo es requerido
+            </div>
+            <div *ngIf="this.formulario.get('descripcion').hasError('email')" class="alert alert-danger" role="alert">
+              introdusca un correo valido
+            </div>
+            <div *ngIf="this.formulario.get('descripcion').hasError('maxLength')" class="alert alert-danger" role="alert">
+              maximo tantos caracteres
+            </div>
+
+          </div>
+    </form>
+</div>
+</div>
+
+
+

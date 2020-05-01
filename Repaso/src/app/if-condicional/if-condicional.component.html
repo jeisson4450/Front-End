@@ -1,0 +1,27 @@
+<br>
+<br>
+<p class="col">En este modulo se hace el uso de *ngIf,el software cual de los dos numeros ingresados es mayor y le muestra la diferencia.</p>
+<br>
+<br>
+<form [formGroup]="formulario" (ngSubmit)="calcular()">
+  <div class="row">
+      <h4>Primer numero</h4>
+      <input formControlName="numero1">
+  </div>
+  <br>
+  <div class="row">
+    <h4>Segundo numero</h4>
+    <input  class="segundo"formControlName="numero2">
+  </div>
+  <br>
+  <br>
+<div class="row">
+  <h4>{{cadena}}</h4>
+</div>
+<div class="row">
+  <h4>Diferencia : {{diferencia}}</h4>
+</div>
+<div class="row">
+  <button type="submit">Calcular</button>
+</div>
+</form>

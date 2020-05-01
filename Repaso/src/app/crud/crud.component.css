@@ -1,0 +1,14 @@
+.opciones{
+
+  width: 900px;
+  height: 400px;
+  border-style: double;
+  margin-bottom: 20px;
+  padding-top: 50px;
+}
+.formulario{
+  margin-top: 20px;
+}
+.botones button{
+  margin-left: 200px;
+}

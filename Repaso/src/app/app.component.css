@@ -1,0 +1,8 @@
+h1{
+  text-align: center;
+}
+@media (max-width: 230px) {
+    .button-jeisson{
+      margin-top: 20px;
+    }
+}
