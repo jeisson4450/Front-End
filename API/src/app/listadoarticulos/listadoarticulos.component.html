@@ -1,0 +1,18 @@
+<div class="table-responsive">
+  <table class="table table-dark tabke-hover table-striped">
+    <thead>
+    <tr>
+      <td>Codigo</td>
+      <td>Descripcion</td>
+      <td>Precio</td>
+    </tr>
+  </thead>
+  <tbody>>
+    <tr *ngFor="let dato of datos">
+      <td>{{dato.codigo}}</td>
+      <td>{{dato.descripcion}}</td>
+      <td>{{dato.precio}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>

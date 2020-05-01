@@ -1,0 +1,41 @@
+
+<h1>Administrador de Objetos</h1>
+<span>Manejo de CRUD, pasar infomacion al componente</span>
+<table border="1" *ngIf="hayRegistros(); else sinarticulos">
+  <thead>
+  <tr>
+    <td>Codigo</td>
+    <td>Descripcion</td>
+    <td>Precio</td>
+    <td>Borrar</td>
+    <td>Modificar</td>
+  </tr>
+  </thead>
+<tbody>
+  <tr *ngFor="let art of articulos">
+      <td>{{art.codigo}}</td>
+      <td>{{art.descripcion}}</td>
+      <td>{{art.precio}}</td>
+      <td><button (click)="borrar(art)">Borrar</button></td>
+      <td><button (click)="seleccionar(art)">Seleccionar</button></td>
+      <ng-template #sinarticulos><p> No hay articulos</p></ng-template>
+  </tr>
+  <tr>
+    <td colspan="5">
+    <p>
+      Codigo:<input type="number" [(ngModel)]="art.codigo"/>
+    </p>
+    <p>
+      Precio:<input type="number" [(ngModel)]="art.precio"/>
+    </p>
+
+      Descripcion:<input type="text" [(ngModel)]="art.descripcion"/>
+
+    <p>
+      <button (click)="agregar()">Agregar</button>
+      <button (click)="modificar()">Modificar</button>
+    </p>
+  </tr>
+</tbody>
+</table>
+

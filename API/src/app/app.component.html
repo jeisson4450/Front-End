@@ -1,0 +1,84 @@
+<div style="text-align:center">
+  <button class="btn-primary" routerLink="/dado">Juego de dados</button> -
+  <button class="btn-primary" routerLink="/selector">Acerca de ...</button> -
+  <button class="btn-primary" routerLink="/">Regresar.</button>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+<div class="containe-fluid">
+  <div class="row">
+      <div class="crud col-lg">
+        <app-primero></app-primero>
+      </div>
+      <div class="col-lg dado">
+        Manejo de @input, passar valores a otro componente
+          <table border = "2">
+          <tr>
+            <td>
+            <div class="row" style="justify-content: center;">
+              <app-dado valor="{{valor1}}"></app-dado>
+              <app-dado valor="{{valor2}}"></app-dado>
+              <app-dado valor="{{valor3}}"></app-dado>
+             </div>
+            </td>
+          </tr>
+          <br>
+          <div class="col text-center ">
+          <button class="btn btn-primary text-center " (click)="generar()">GENERAR</button>
+          </div>
+          <br>
+            <tr>
+              <td>
+                <a class="mensaje" *ngIf="bandera; else bienvenida">Usted {{resultado}}</a>
+                <ng-template #bienvenida>
+                  <a>PRESIONE EL BOTON GENERAR</a>
+                </ng-template>
+              </td>
+          </tr>
+          </table>
+        </div>
+        <div class="col crono ">
+          Manejo de @Input y @Output event personalizado uso de setInterval
+          <h1>Componente Cronometro</h1>
+          <div class="row">
+            <app-cronometro inicio="0" (multiplo10)="actualizar($event)"></app-cronometro>
+          </div>
+          <h2 >Evento</h2>
+          <h3>{{mensaje}}</h3>
+        </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-auto">
+      Usar funciones de otro componente
+      <br>
+      <app-selector #selector></app-selector>
+      <div>
+        <button (click)="selector.generar(1)">ASIGNAR 1</button>
+      </div>
+    </div>
+
+    <div class="selectore2 col-lg-auto">
+      <app-selectorclase2 minimo={{minimo}} maximo={{maximo}}  #selector1></app-selectorclase2>
+      <button (click)="holi()">FIJAR</button>
+      <br>
+      <app-selectorclase2 minimo={{minimo}} maximo={{maximo}}  #selector2></app-selectorclase2>
+    </div>
+
+    <div class="listado col-lg-auto">
+      <app-listadoarticulos [datos]= "articulos" ></app-listadoarticulos>
+    </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-auto">
+    <app-modulos valor="6"></app-modulos>
+  </div>
+  <div class="col-md-auto">
+    <app-json></app-json>
+  </div>
+
+</div>
+</div>

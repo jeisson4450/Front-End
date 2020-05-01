@@ -1,0 +1,23 @@
+.dado{
+ left:0px;
+}
+.listado{
+ left: 0px;
+ padding-left: 0;
+}
+.crono{
+  text-align: center;
+}
+@media all and (max-width: 100px){
+  div.dado{
+    display: block;
+  }
+}
+table{
+  width: 300px;
+}
+  div.crud{
+    display: block;
+
+  }
+
