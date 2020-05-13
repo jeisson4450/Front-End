@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0TbIhDJWcBB7kC34B68gZjGbKSBeXqH7Tr7OVgWx25l8Gz9rCHQhqKlD8FgyZUKejHLdK1+ZG3ar6n1GpmnEkw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jeisson\\Desktop\\GIT\\Front-End\\C# ASP.NET API REST\\ViewModels\\ViewModels.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
