@@ -1,0 +1,143 @@
+﻿@model ViewModels.Cliente
+
+@{
+    ViewBag.Title = "Crear Cliente";
+    List<SelectListItem> departamentos = new List<SelectListItem>();
+}
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Style.css" />
+    <link rel="stylesheet" href="~/Content/alertifyjs/alertify.css" />
+    <script src="~/Scripts/alertify.js"></script>
+
+
+
+
+
+    <section class="form-registro">
+        <h4>Crear Cliente</h4>
+
+        @using (Html.BeginForm("crearCliente", "GestionReservas",FormMethod.Get ,new { id = "Formulario" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.identificacion, new { htmlAttributes = new { @class = "controls", type = "text", placeholder = "Ingrese su identificacion", autofocus = "autofocus" } })
+            @Html.ValidationMessageFor(model => model.identificacion, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "controls", type = "text", placeholder = "Ingrese su nombre" } })
+            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "controls", type = "text", placeholder = "Ingrese su apellido" } })
+            @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "controls", type = "text", placeholder = "Ingrese su telefono" } })
+            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "controls", type = "text", placeholder = "Ingrese su correo" } })
+            @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+            <div class="controls">
+                @{foreach (var depart in ViewBag.departamentos)
+                    {
+                        departamentos.Add(
+                            new SelectListItem
+                            {
+                                Text = depart.departamento,
+                                Value = depart.id_departamento.ToString()
+                            });
+                    }
+                    ViewBag.listaDepartamentos = departamentos;
+                }
+                @Html.DropDownList("departamento", ViewBag.listaDepartamentos as List<SelectListItem>,
+                                                         " -- Seleccionar departamento --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_departamento, "", new { @class = "text-danger" })
+                <br />
+
+                @Html.DropDownList("ciudad", new List<SelectListItem>(),
+                                                             " -- Seleccionar Ciudad --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_ciudad, "", new { @class = "text-danger" })
+
+            </div>
+
+
+            @Html.EditorFor(model => model.edad, new { htmlAttributes = new { @class = "controls", type = "text", placeholder = "Ingrese su edad" } })
+            @Html.ValidationMessageFor(model => model.edad, "", new { @class = "text-danger" })
+            <input class="boton btn" type="button" value="registrar" onclick="registrar()" />
+        }
+    </section>
+
+</body>
+</html>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+@section Scripts {
+
+
+    <script>
+
+        function registrar() {
+            
+            $.ajax({
+                    url: 'https://localhost:44382/api/Operaciones',
+                data: {
+                        identificacion: $("#identificacion").val(),
+                    nombre: $("#nombre").val(), apellido: $("#apellido").val(),
+                    telefono: $("#telefono").val(), correo: $("#correo").val(),
+                    id_departamento: $("#departamento").val(),
+                    id_ciudad: $("#ciudad").val(),
+                    edad: $("#edad").val()
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                        console.log(data)
+                    alertify.success(data)
+                    document.getElementById('Formulario').reset();
+
+                },
+                error: function (error) {
+                    console.log(error.responseJSON.Detalle)
+                    alertify.error(error.responseJSON.Error)
+                    
+                    }
+                });
+        }
+        var select = document.getElementById('departamento');
+
+
+        $(document).ready(function () {
+            $("#departamento").change(function () {
+
+                $.ajax({
+                    url: 'https://localhost:44382/api/Ubicacion',
+                    data: { id_departamento: $("#departamento").val() },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $("#ciudad").empty();
+                        $("#ciudad").append("<option value> -- Seleccionar Territorios de " + $("#departamento option:selected").text() + " --</option>")
+                        for (let item of data) {
+                            $("#ciudad").append("<option value='" + item.id_ciudad + "'>" + item.ciudad + "</option>")
+                        }
+                    },
+
+                    // código a ejecutar si la petición falla;
+                    // son pasados como argumentos a la función
+                    // el objeto de la petición en crudo y código de estatus de la petición
+                    error: function (response, status) {
+                        alert(response);
+                    },
+
+                });
+            });
+        });
+
+
+
+    </script>
+    
+}
