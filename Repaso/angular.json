@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Repaso"
+    }
+  },
+  "defaultProject": "Repaso",
+  "cli": {
+    "analytics": false
+  }
 }

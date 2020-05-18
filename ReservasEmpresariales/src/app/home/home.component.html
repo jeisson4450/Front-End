@@ -1,0 +1,33 @@
+<div class="row menu ">
+    <input type="button" value="Crear cliente" class="btn btn-success" (click)="crearCliente()">
+  </div>
+<div class="container registros">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre Cliente</th>
+                <th>Identificacion</th>
+                <th>Telefono</th>
+                <th>Ciudad</th>
+                <th>Fecha Evento</th>
+                <th>Cantidad Personas</th>
+                <th>Motivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <th *ngFor="let item of arreglo">
+                    <h5>{{item}}</h5>
+                </th>
+                <th>
+                    <input type="button" class="btn btn-primary" value="Editar">
+                </th>
+                <th> 
+                    <input type="button" class="btn btn-danger" value="Eliminar">
+                </th>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+

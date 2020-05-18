@@ -1,0 +1,37 @@
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f53c5;
+    font-family: Verdana;
+    font-size: 18px;
+}
+.btn-danger{
+    margin-left: 10px;
+}
+.container{
+    display: flex;
+    justify-content: flex-end;
+}
+.crearcliente{
+    height: 600px;
+}
+
+
+.selectores  select{
+    display: flex;
+    
+}
+.ale{
+    
+    width: 300px;
+}
+.alerta{
+    padding-left: 5px;
+    height: 20PX;
+    width: 180px;
+    font-size: 15px;
+    border-radius: 20px;
+  
+}
