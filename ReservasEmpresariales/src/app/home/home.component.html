@@ -1,9 +1,9 @@
 <div class="row menu ">
     <input type="button" value="Crear cliente" class="btn btn-success" (click)="crearCliente()">
   </div>
-<div class="container registros">
-    <table class="table table-hover">
-        <thead>
+<div class="registros">
+    <table class="table table-striped" style="width:92% ;">
+        <thead >
             <tr>
                 <th>Nombre Cliente</th>
                 <th>Identificacion</th>
@@ -12,20 +12,40 @@
                 <th>Fecha Evento</th>
                 <th>Cantidad Personas</th>
                 <th>Motivo</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
-            <tr >
-                <th *ngFor="let item of arreglo">
-                    <h5>{{item}}</h5>
+        <tbody *ngIf="details !== ''">
+            <tr *ngFor="let item of details">
+                <th >
+                    <h6>{{item.nombre +" "+ item.apellido}}</h6>
+                </th>
+                <th >
+                    <h6>{{item.identificacion}}</h6>
+                </th>
+                <th >
+                    <h6>{{item.telefono}}</h6>
+                </th>
+                <th >
+                    <h6>{{item.ciudades}}</h6>
+                </th>
+                <th >
+                    <h6>{{item.fechaEvento}}</h6>
                 </th>
                 <th>
-                    <input type="button" class="btn btn-primary" value="Editar">
+                    <h6>{{item.personas}}</h6>
                 </th>
-                <th> 
-                    <input type="button" class="btn btn-danger" value="Eliminar">
+                <th >
+                    <h6>{{item.motivo}}</h6>
                 </th>
-
+                <th>
+                    <button type="button" id="edit"><span class="fas fa-edit"></span></button>
+                    
+                    <button type="button " id="tash"><span class=" tash fas fa-trash-alt"></span></button>
+                    
+                </th>
+              
+                <a img="C:\Users\jeisson\Desktop\GIT\Front-End\ReservasEmpresariales\src\app\editar.png" title="Pixel perfect"></a> 
             </tr>
         </tbody>
     </table>

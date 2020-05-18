@@ -4,6 +4,7 @@ import { IDepartamento } from '../IDepartamentos';
 import { ICiudades } from '../ICiudades';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from '../Response';
+import { MatDialog, MatDialogRef } from '@angular/material';
 declare let alertify:any;
 
 @Component({
@@ -18,16 +19,18 @@ export class CrearClienteComponent implements OnInit {
 
   usuario: FormGroup;
 
-  constructor(private  services : OperacionesService , public fb: FormBuilder) { 
-    this.builForm();
-   
-  }
+  constructor(
+    private  services : OperacionesService , 
+    public fb: FormBuilder,
+    public dialogRef: MatDialogRef<CrearClienteComponent>) 
+    { 
+      this.builForm();  
+    }
   
 
   ngOnInit() {
     this.url = 'https://localhost:44382/api/Ubicacion';
     this.services.metodoGet(this.url).subscribe(reponse =>this.departamentos = reponse);
-    
   }
 
   ConsularCiudad(){
@@ -37,7 +40,6 @@ export class CrearClienteComponent implements OnInit {
      var data = JSON.parse(JSON.stringify(departamento))
     this.url = 'https://localhost:44382/api/Ubicacion';
     this.services.metodoPost(this.url, data).subscribe(reponse =>this.ciudades = reponse);
-
   }
 
   private builForm(){
@@ -58,12 +60,13 @@ export class CrearClienteComponent implements OnInit {
     this.url = 'https://localhost:44382/api/Operaciones';
     this.services.metodoPost(this.url, data).subscribe((reponse)=>{
         console.log(reponse);
+        this.dialogRef.close();
         alertify.success(reponse.Message)
       },(Fail) =>{
-        console.log(Fail)
-        console.log(Fail.error.Detalle)
-        alertify.error(Fail.error.Message +": " +Fail.error.Detalle);
-        
+        Fail.error.Detalle ? ( alertify.error(Fail.error.Message + ": " +Fail.error.Detalle)) : alertify.error(Fail.error.Message);
       });
+  }
+  close(){
+    this.dialogRef.close();
   }
 }

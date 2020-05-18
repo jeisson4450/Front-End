@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import { CrearClienteComponent } from '../crear-cliente/crear-cliente.component';
+import { OperacionesService } from '../operaciones.service';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +10,28 @@ import { CrearClienteComponent } from '../crear-cliente/crear-cliente.component'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dialog : MatDialog) { }
+  url: string ='';
+  details :any = "";
+  show = "hidden";
+  constructor(private dialog : MatDialog,private  services : OperacionesService ,) 
+  {
+    this.customers();
+  }
 
   ngOnInit() {
   }
- arreglo :any[]=["jeisson",'gonzalez','piracoca','suzuki','carro','celular','hulk'];
+ 
 
  crearCliente(){
 
   this.dialog.open(CrearClienteComponent);
-
+ }
+ customers(){
+    this.url = 'https://localhost:44382/api/Operaciones';
+    this.services.metodoGet(this.url).subscribe(reponse =>{
+      this.details = reponse;
+      console.log(reponse)
+      
+    });
  }
 }

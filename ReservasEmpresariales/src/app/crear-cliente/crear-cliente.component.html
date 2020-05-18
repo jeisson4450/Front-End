@@ -59,7 +59,7 @@
     <br>
     <div class="container">
         <button type="submit" [disabled]="usuario.invalid" class="btn btn-success">Crear</button>
-        <button type="button" class="btn btn-danger" >Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="close()">Cancelar</button>
     </div>
 </form>
 </div>
