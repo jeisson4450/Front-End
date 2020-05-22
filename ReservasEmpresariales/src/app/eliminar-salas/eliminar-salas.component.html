@@ -1,0 +1,45 @@
+
+    <form [formGroup]="formularioSala" novalidate (ngSubmit)="eliminarsala()">
+        <h4>Eliminar Solicitud</h4>
+        <br>
+    
+        <div class=" alerta alert-danger" *ngIf="formularioSala.get('identificacion').errors && formularioSala.get('identificacion').touched">
+            Este campo es requerido
+        </div>
+        
+    
+        <select  class="form-control selectores"  formControlName="identificacion"  (change)="ConsultarSalas()">
+            <option value=""> -- Seleccionar Cliente --</option>
+            <option *ngFor="let cliente of clientes" value={{cliente.identificacion}}>{{cliente.identificacion}}</option>
+        </select>
+
+        
+        <div class=" alerta alert-danger" *ngIf="formularioSala.get('id_sala').errors && formularioSala.get('id_sala').touched">
+            Este campo es requerido
+        </div>
+        
+    
+        <select  class="form-control selectores"  formControlName="id_sala"  (change)="DetalleSala()">
+            <option value=""> -- Seleccionar Sala --</option>
+            <option *ngFor="let sala of salas" value={{sala.id_sala}}>{{sala.id_sala}}</option>
+        </select>
+       
+        <div *ngIf="salas">
+            <div *ngFor="let detalle of detalles">
+                <h6>Estado: {{detalle.estado}}</h6>
+                <h6>Motivo: {{detalle.motivo}}</h6>
+                <h6>Cant.personas: {{detalle.capacidad}}</h6>
+                <h6>Fecha Evento: {{detalle.fecha_evento}}</h6>
+            </div>
+        </div>
+        <br>
+
+       
+        <div class="container">
+            <button type="submit" class="btn btn-success">Eliminar</button>
+            <button type="button" class="btn btn-danger" (click)="close()">Cancelar</button>
+        </div>
+    </form>
+    
+    
+    

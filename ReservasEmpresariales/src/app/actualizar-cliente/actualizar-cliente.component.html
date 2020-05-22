@@ -1,0 +1,65 @@
+
+    <form [formGroup]="usuario" novalidate (ngSubmit)="actualizarCliente($event)">
+        <h4>Actualizar Cliente</h4>
+        <br>
+    
+        <div class="alerta alert-danger"  *ngIf="usuario.get('identificacion').errors && usuario.get('identificacion').touched">
+                Este campo es requerido
+        </div>
+        <input disabled  type="text" class="form-control"  formControlName="identificacion"  placeholder="Ingrese su identificacion">
+        
+        
+        <div class="alerta alert-danger" *ngIf="usuario.get('nombre').errors && usuario.get('nombre').touched">
+            Este campo es requerido
+        </div>
+        <input type="text" class="form-control" formControlName="nombre"  placeholder="Ingrese su nombre">
+        
+        
+        <div class="alerta alert-danger" *ngIf="usuario.get('apellido').errors && usuario.get('apellido').touched">
+            Este campo es requerido
+        </div>
+        <input type="text" class="form-control" formControlName="apellido"  placeholder="Ingrese su apellido">
+       
+        <div class="alerta alert-danger" *ngIf="usuario.get('telefono').errors && usuario.get('telefono').touched">
+            Este campo es requerido
+        </div>
+        <input type="text" class="form-control" formControlName="telefono"  placeholder="Ingrese su telefono">
+      
+        <div class="alerta alert-danger" *ngIf="usuario.get('correo').errors && usuario.get('correo').touched">
+            Este campo es requerido
+        </div>
+        <input type="email" class="form-control" formControlName="correo"  placeholder="Ingrese su correo">
+        
+        <div class= "alerta alert-danger" *ngIf="usuario.get('edad').errors && usuario.get('edad').touched">
+            Este campo es requerido
+        </div>
+        <input type="text" class="form-control" formControlName="edad"  placeholder="Ingrese su edad">
+        
+        
+        <div class=" alerta alert-danger" *ngIf="usuario.get('id_departamento').errors && usuario.get('id_departamento').touched">
+            Este campo es requerido
+        </div>
+        
+    
+        <select  class="form-control selectores"  formControlName="id_departamento"  (change)="ConsularCiudad()">
+            <option value=""> -- Seleccionar departamento --</option>
+
+            <option *ngFor="let departamento of departamentos" value={{departamento.id_departamento}}>{{departamento.departamento}}</option>
+        </select>
+    
+        <div class=" alerta alert-danger" *ngIf="usuario.get('id_ciudad').errors && usuario.get('id_ciudad').touched">
+            Este campo es requerido
+        </div>
+        <select class="form-control selectores"  formControlName="id_ciudad">
+            <option value=""> -- Seleccionar ciudad --</option>
+            <option *ngFor="let ciudad of ciudades" value={{ciudad.id_ciudad}}>{{ciudad.ciudad}}</option>
+        </select>
+        <br>
+        <div class="container">
+            <button type="submit" [disabled]="usuario.invalid" class="btn btn-success">Actualizar</button>
+            <button type="button" class="btn btn-danger" (click)="close()">Cancelar</button>
+        </div>
+    </form>
+    
+    
+    

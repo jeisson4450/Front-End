@@ -1,8 +1,20 @@
 <div class="row menu ">
-    <input type="button" value="Crear cliente" class="btn btn-success" (click)="crearCliente()">
-  </div>
-<div class="registros">
-    <table class="table table-striped" style="width:92% ;">
+    <input type="button" value="Crear Cliente" class="btn btn-success" (click)="crearCliente()">
+    <input type="button" value="Crear Solicitud" class="btn btn-success nav" (click)="crearSolicitud()">
+    <input type="button" value="Eliminar Solicitud" class="btn btn-success nav" (click)="eliminarSolicitud()">
+    
+</div>
+<br>    
+<div id="row filtros">
+    <form [formGroup]="filtros" novalidate (ngSubmit)="filtroSolicitud()">
+    <input type="date"   formControlName="f_inicial" class="filtro" placeholder="seleccione la fecha">
+
+    <input type="date"   formControlName="f_final"  class="filtro" placeholder="seleccione la fecha">
+    <input type="submit" value="Filtrar" class="btn btn-success filtro">
+</form>
+</div>
+<div id="registros" >
+    <table class="table table-striped" align="center">
         <thead >
             <tr>
                 <th>Nombre Cliente</th>
@@ -39,13 +51,9 @@
                     <h6>{{item.motivo}}</h6>
                 </th>
                 <th>
-                    <button type="button" id="edit"><span class="fas fa-edit"></span></button>
-                    
-                    <button type="button " id="tash"><span class=" tash fas fa-trash-alt"></span></button>
-                    
+                    <button type="button" id="edit"(click)="actualizarCliente(item)"><span class="fas fa-edit"></span></button>
+                    <button type="button " id="tash" (click)="eliminarCliente(item)"><span class=" tash fas fa-trash-alt"></span></button>
                 </th>
-              
-                <a img="C:\Users\jeisson\Desktop\GIT\Front-End\ReservasEmpresariales\src\app\editar.png" title="Pixel perfect"></a> 
             </tr>
         </tbody>
     </table>

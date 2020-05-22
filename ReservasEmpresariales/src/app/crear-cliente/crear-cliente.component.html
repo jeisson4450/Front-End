@@ -1,6 +1,6 @@
-<div class="crearcliente">
-    <form [formGroup]="usuario" novalidate (ngSubmit)="crearcliente($event)">  
-    <h2>Crear Cliente</h2>
+
+    <form [formGroup]="usuario" novalidate (ngSubmit)="crearcliente($event)">
+    <h4>Crear Cliente</h4>
     <br>
 
     <div class="alerta alert-danger" *ngIf="usuario.get('identificacion').errors && usuario.get('identificacion').touched">
@@ -39,28 +39,25 @@
     <div class=" alerta alert-danger" *ngIf="usuario.get('id_departamento').errors && usuario.get('id_departamento').touched">
         Este campo es requerido
     </div>
-    <div class="selectores">
-
-        <select  class="form-control ale"  formControlName="id_departamento"  (change)="ConsularCiudad()">
-            <option value=""> -- Seleccionar departamento --</option>
-            <option *ngFor="let departamento of departamentos" value={{departamento.id_departamento}}>{{departamento.departamento}}</option>
-        </select>
     
 
-        <div class=" alerta alert-danger" *ngIf="usuario.get('id_ciudad').errors && usuario.get('id_ciudad').touched">
-            Este campo es requerido
-        </div>
-        <select class="form-control ale"  formControlName="id_ciudad">
-            <option value=""> -- Seleccionar ciudad --</option>
-            <option *ngFor="let ciudad of ciudades" value={{ciudad.id_ciudad}}>{{ciudad.ciudad}}</option>
+    <select  class="form-control selectores"  formControlName="id_departamento"  (change)="ConsularCiudad()">
+        <option value=""> -- Seleccionar departamento --</option>
+        <option *ngFor="let departamento of departamentos" value={{departamento.id_departamento}}>{{departamento.departamento}}</option>
+    </select>
 
-        </select>
+    <div class=" alerta alert-danger" *ngIf="usuario.get('id_ciudad').errors && usuario.get('id_ciudad').touched">
+        Este campo es requerido
     </div>
+    <select class="form-control selectores"  formControlName="id_ciudad">
+        <option value=""> -- Seleccionar ciudad --</option>
+        <option *ngFor="let ciudad of ciudades" value={{ciudad.id_ciudad}}>{{ciudad.ciudad}}</option>
+    </select>
     <br>
     <div class="container">
         <button type="submit" [disabled]="usuario.invalid" class="btn btn-success">Crear</button>
         <button type="button" class="btn btn-danger" (click)="close()">Cancelar</button>
     </div>
 </form>
-</div>
+
 

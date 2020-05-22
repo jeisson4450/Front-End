@@ -1,0 +1,56 @@
+
+    <form [formGroup]="sala" novalidate (ngSubmit)="crearsala($event)">
+        <h4>Crear Solicitud</h4>
+        <br>
+    
+        <div class="alerta alert-danger" *ngIf="sala.get('fecha_evento').errors && sala.get('fecha_evento').touched">
+                Este campo es requerido
+        </div>
+        <input type="date" class="form-control"  formControlName="fecha_evento"  placeholder="seleccione la fecha">
+        
+        
+        <div class="alerta alert-danger" *ngIf="sala.get('capacidad').errors && sala.get('capacidad').touched">
+            Este campo es requerido
+        </div>
+        <input type="text" class="form-control" formControlName="capacidad"  placeholder="Cantidad de personas">
+        
+        <div class=" alerta alert-danger" *ngIf="sala.get('id_motivo').errors && sala.get('id_motivo').touched">
+            Este campo es requerido
+        </div>
+
+        <select  class="form-control selectores"  formControlName="id_motivo" >
+            <option value=""> -- Seleccionar motivo --</option>
+            <option *ngFor="let motivo of motivos" value={{motivo.id_motivo}}>{{motivo.motivo}}</option>
+        </select>
+
+
+
+        <div class="alerta alert-danger" *ngIf="sala.get('observaciones').errors && sala.get('observaciones').touched">
+            Este campo es requerido
+        </div>
+        <textarea  class="form-control"  formControlName="observaciones"  placeholder="Observaciones"></textarea>
+
+        <div class=" alerta alert-danger" *ngIf="sala.get('id_estado').errors && sala.get('id_estado').touched">
+            Este campo es requerido
+        </div>
+        <select class="form-control selectores"  formControlName="id_estado">
+            <option value=""> -- Seleccionar estado --</option>
+            <option *ngFor="let estado of estados" value={{estado.id_estado}}>{{estado.estado}}</option>
+        </select>
+
+        <div class="alerta alert-danger" *ngIf="sala.get('identificacion').errors && sala.get('identificacion').touched">
+            Este campo es requerido
+        </div>
+        <select class="form-control selectores"  formControlName="identificacion">
+            <option value=""> -- Seleccionar cliente --</option>
+            <option *ngFor="let cliente of clientes" value={{cliente.identificacion}}>{{cliente.identificacion}}</option>
+        </select>        
+        <br>
+        <div class="container">
+            <button type="submit" [disabled]="sala.invalid" class="btn btn-success">Crear</button>
+            <button type="button" class="btn btn-danger" (click)="close()">Cancelar</button>
+        </div>
+    </form>
+    
+    
+    

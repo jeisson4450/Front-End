@@ -54,6 +54,7 @@ export class CrearClienteComponent implements OnInit {
       id_ciudad: ['', [Validators.required]],
     });    
   }
+  
   crearcliente(event :Event){
     event.preventDefault();
     const data  = this.usuario.value;
